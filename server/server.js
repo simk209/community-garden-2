@@ -17,14 +17,21 @@ app.use(express.json()); // Parse JSON request bodies
 app.use(cors()); // Enable Cross-Origin Resource Sharing
 
 // routes
-
+app.get('/',(req,res)=>{
+    console.log('L21')
+    return res.sendStatus(200)
+})
 // login
 app.post('/login', userController.login, (req,res)=>{
     return res.sendStatus(200)
 })
 
 // signup
-app.post('/signup', userController.signup, (req,res)=>{
+app.post('/signup', (req,res,next)=>{
+    console.log('signup 31')
+    console.log(req.body.username)
+    return next()
+}, userController.signup, (req,res)=>{
     return res.sendStatus(200)
 })
 
@@ -34,15 +41,21 @@ app.use('*', (req, res) => {
   });
 
 app.use((err, req, res, next) => {
+    // Log the actual error message along with other details
+    console.error('Express error handler caught an error:', err);
+
     const defaultErr = {
-      log: 'Express error handler caught unknown middleware error',
-      status: 400,
-      message: { err: 'An error occurred' },
+        log: 'Express error handler caught an error',
+        status: 500,
+        message: { error: 'An error occurred' },
     };
-    const errorObj = Object.assign(err, defaultErr);
+
+    const errorObj = Object.assign(defaultErr, err);
     console.log(errorObj.log);
+
     const status = JSON.stringify(errorObj.status);
     const response = JSON.stringify(errorObj.message);
+
     return res.status(status).send(response);
   });
 
