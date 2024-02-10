@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 const cors = require('cors');
 
 // require controllers
-const userController = require('../controllers/userController')
+const userController = require('./controllers/userController')
 
 
 // Create an Express application
