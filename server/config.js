@@ -1,13 +1,13 @@
 const { Pool } = require('pg');
+require('dotenv').config();
 
 
-const PG_URI = process.env.PG_URI;
+const PG_URI = process.env.PG_URI
 
 // create a new pool here using the connection string above
 const pool = new Pool({
   connectionString: PG_URI
 });
-
 
 // We export an object that contains a property called query,
 // which is a function that returns the invocation of pool.query() after logging the query

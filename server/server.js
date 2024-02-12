@@ -18,7 +18,7 @@ app.use(cors()); // Enable Cross-Origin Resource Sharing
 
 // routes
 app.get('/',(req,res)=>{
-    console.log('L21')
+    console.log('get req to home')
     return res.sendStatus(200)
 })
 // login
@@ -28,8 +28,7 @@ app.post('/login', userController.login, (req,res)=>{
 
 // signup
 app.post('/signup', (req,res,next)=>{
-    console.log('signup 31')
-    console.log(req.body.username)
+    console.log('before userController.signup')
     return next()
 }, userController.signup, (req,res)=>{
     return res.sendStatus(200)
