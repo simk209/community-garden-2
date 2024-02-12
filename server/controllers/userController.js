@@ -7,18 +7,17 @@ userController.login = (req,res,next) => {
 }
 
 userController.signup = (req,res,next) => {
-    const username = req.body.username
-    console.log('username: ',username)
-    // const userExistsQry = {
-    //     text: `SELECT EXISTS (
-    //     SELECT 1
-    //     FROM users
-    //     WHERE username = req.body.username
-    //     )`, 
-    //     values: [username]}
-    const userExistsQry = 'SELECT * FROM users'
-
-    db.query(userExistsQry)
+    const email = req.body.email
+    console.log('email: ',email)
+    const userExistsQry = 
+        `SELECT EXISTS (
+        SELECT 1
+        FROM users
+        WHERE email = $1
+        )`
+    // const userExistsQry = 'SELECT * FROM users'
+    const values = [email]
+    db.query(userExistsQry,values)
         .then(result => {
             console.log(result)
             console.log('L22')})
