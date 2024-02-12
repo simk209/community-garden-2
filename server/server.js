@@ -27,10 +27,7 @@ app.post('/login', userController.login, (req,res)=>{
 })
 
 // signup
-app.post('/signup', (req,res,next)=>{
-    console.log('before userController.signup')
-    return next()
-}, userController.signup, (req,res)=>{
+app.post('/signup', userController.signup, (req,res)=>{
     return res.sendStatus(200)
 })
 

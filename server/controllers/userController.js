@@ -4,14 +4,41 @@ const bcrypt = require('bcrypt');
 const userController = {};
 
 userController.login = (req,res,next) => {
+    const email = req.body.email
+    const password = req.body.password 
 
+
+    const getPasswordHashQry = `
+    SELECT password_hash 
+    FROM users
+    WHERE email = $1
+    `
+
+    db.query(getPasswordHashQry,[email])
+    .then((result)=>{
+        // if nothing matches then user does not exist
+        if (result.rows.length === 0) {
+            return res.status(401).json({ error: 'Invalid email.' });
+        }
+
+        const passwordHash = (result.rows[0].password_hash)
+        return bcrypt.compare(password,passwordHash)
+    })
+    .then(match => {
+        if (!match){
+            return res.status(401).json({ error: 'Invalid email or password.' })
+        }
+        return next()
+    })
+    .catch(err =>{
+        return next(err)
+    })
 }
 
 userController.signup = (req,res,next) => {
     const email = req.body.email
     const password = req.body.password 
 
-    console.log('email: ',email)
     const userExistsQry = 
         `SELECT EXISTS (
         SELECT 1
@@ -19,9 +46,8 @@ userController.signup = (req,res,next) => {
         WHERE email = $1
         )`
     // const userExistsQry = 'SELECT * FROM users'
-    const values = [email]
     
-    db.query(userExistsQry,values)
+    db.query(userExistsQry,[email])
         // check if email is alrdy being used
         .then(result => {
             const exists = result.rows[0].exists
