@@ -17,21 +17,29 @@ function SignUpPage() {
     console.log('formdata at input change',formData)
   };
 
-  const handleSubmit = event => {
+  const handleSubmit = async event => {
     console.log('formdata at submit',formData)
     event.preventDefault()
-    // send info to backend
-    const form = event.target
-    console.log(form.name.value)
-    console.log(form.email.value)
-    console.log(form.password.value)
+    try {
+      const response = await fetch('http://localhost:5000/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+      console.log(response)
+      if (response.ok) console.log('Completed Login Successfully')
+      else console.log('Not receiving 200 OK for Signup')
     }
+    catch(err){
+      console.log('Error during signup:',err)
+    }
+  }
 
   return (
     <div>
       <h2>Sign Up</h2>
-      {/* Include your signup form here */}
-      {/* you'll need an onsuvmit in the form */}
       <form onSubmit={handleSubmit}>
         <div>
         <label> Name:</label>
