@@ -20,9 +20,16 @@
 .container{
     background-color: rgba(10, 62, 37, 0.503);
     padding: 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.container p{
+h1{
+    margin-bottom: .4em;
+}
+.description {
+    margin-bottom: .3em;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5)
 
 }
