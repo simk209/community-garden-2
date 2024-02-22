@@ -1,0 +1,49 @@
+.body-container{
+    background-image: url('./images/com.jpg');
+    min-height: 100vh;
+    background-size: cover; /* Cover the entire container with the background image */
+    background-position: center; /* Center the background image horizontally and vertically */
+    background-repeat: no-repeat; /* Prevent the background image from repeating */
+    color: #fff;
+    margin: 0;
+
+}
+
+.sign-up-container{
+    font-size: 2.5em;
+    width: 38%;
+    display: flex;
+    flex-direction: column;
+    background-color: #09350a4b;
+    padding: 1em;
+    border-radius: 5px;
+
+}
+
+.body-container form{
+    margin-top: .3em;
+    display: flex;
+    flex-direction: column;
+}
+
+.body-container form div {
+    display: flex; /* Make each form field container a flex container */
+    align-items: center; /* Align items vertically within each form field container */
+  }
+
+.body-container form input {
+    padding: 1em;
+    margin-left: .3em;
+    margin-bottom: .3em;
+    flex: 1;
+  }
+
+.body-container form button{
+    padding: .8em 1em; /* Add padding to the button */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Add border radius */
+    background-color: #2b8e2e; /* Set background color */
+    color: white; /* Set text color */
+    font-size: 16px; /* Set font size */
+    cursor: pointer; /* Add cursor pointer */
+}

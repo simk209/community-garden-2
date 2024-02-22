@@ -1,6 +1,6 @@
 import React from 'react';
 import {useState} from 'react'
-
+import './SignUpPage.css'
 function SignUpPage() {
 
   const [formData, setFormData] = useState({})
@@ -38,28 +38,31 @@ function SignUpPage() {
   }
 
   return (
-    <div>
-      <h2>Sign Up</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-        <label> Name:</label>
-        <input type="text" name="name" onChange={handleChange} required/>
-        </div>
+    <div className='body-container'>
+      <div className='sign-up-container'>
 
-        <div>
-        <label> Email:</label>
-        <input type="text" name="email" onChange={handleChange} required/>
-        </div>
-        
-        <div>
-        <label> Password:</label>
-        <input type="password" name = "password" onChange={handleChange} required/>
-        </div>
+        <div>Sign Up</div>
+        <form onSubmit={handleSubmit}>
+          <div>
+          {/* <label> Name:</label> */}
+          <input type="text" name="name" onChange={handleChange} placeholder='Name' required/>
+          </div>
 
-        <button type="submit">Sign Up</button>
+          <div>
+          {/* <label> Email:</label> */}
+          <input type="text" name="email" onChange={handleChange} placeholder='Email' required/>
+          </div>
+          
+          <div>
+          {/* <label> Password:</label> */}
+          <input type="password" name = "password" onChange={handleChange} placeholder='Password' required/>
+          </div>
+
+          <button type="submit">Sign Up</button>
 
 
-      </form>
+        </form>
+      </div>
     </div>
   );
 }
