@@ -1,11 +1,13 @@
 // Import required modules
-const express = require('express');
-const pg = require('pg');
-const bcrypt = require('bcrypt');
-const cors = require('cors');
+import express from 'express';
+// const express = require('express');
+import pg from 'pg';
+import bcrypt from 'bcrypt';
+import cors from 'cors';
 
 // require controllers
-const userController = require('./controllers/userController')
+import userController from './controllers/userController.js'
+// const userController = require('./controllers/userController')
 
 
 // Create an Express application
@@ -59,4 +61,4 @@ app.listen(PORT, () => {
     console.log(`Server listening on port: ${PORT}`);
   });
 
-module.exports = app;
+export default app; 

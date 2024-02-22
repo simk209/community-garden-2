@@ -1,5 +1,5 @@
-const db = require('../config.js');
-const bcrypt = require('bcrypt');
+import query from '../config.js';
+import bcrypt from 'bcrypt';
 
 const userController = {};
 
@@ -14,7 +14,7 @@ userController.login = (req,res,next) => {
     WHERE email = $1
     `
 
-    db.query(getPasswordHashQry,[email])
+    query(getPasswordHashQry,[email])
     .then((result)=>{
         // if nothing matches then user does not exist
         if (result.rows.length === 0) {
@@ -36,6 +36,7 @@ userController.login = (req,res,next) => {
 }
 
 userController.signup = (req,res,next) => {
+    console.log('req body',req.body)
     const email = req.body.email
     const password = req.body.password 
 
@@ -47,7 +48,7 @@ userController.signup = (req,res,next) => {
         )`
     // const userExistsQry = 'SELECT * FROM users'
     
-    db.query(userExistsQry,[email])
+    query(userExistsQry,[email])
         // check if email is alrdy being used
         .then(result => {
             const exists = result.rows[0].exists
@@ -69,7 +70,7 @@ userController.signup = (req,res,next) => {
                 text: 'INSERT INTO users(email, password_hash) VALUES($1, $2)',
                 values: [email, passwordHash],
               };
-            return db.query(newUserQry.text, newUserQry.values);
+            return query(newUserQry.text, newUserQry.values);
         })
         .then(()=> next())
         .catch(err => {
@@ -77,4 +78,4 @@ userController.signup = (req,res,next) => {
         })    
 }
 
-module.exports = userController
+export default userController;
