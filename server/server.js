@@ -25,7 +25,8 @@ app.get('/',(req,res)=>{
 })
 // login
 app.post('/login', userController.login, (req,res)=>{
-    return res.sendStatus(200)
+  console.log('logged in!')
+  return res.sendStatus(200)
 })
 
 // signup

@@ -1,0 +1,25 @@
+.body-container{
+    background-image: url('./images/com.jpg');
+    min-height: 100vh;
+    background-size: cover; /* Cover the entire container with the background image */
+    background-position: center; /* Center the background image horizontally and vertically */
+    background-repeat: no-repeat; /* Prevent the background image from repeating */
+    color: #fff;
+    margin: 0;
+
+}
+
+.sign-up-container{
+    font-size: 2.5em;
+    width: 38%;
+    display: flex;
+    flex-direction: column;
+    background-color: #09350a4b;
+    padding: 1em;
+    border-radius: 5px;
+
+}
+
+.sign-up-container h2{
+    font-size: 1em;
+}
